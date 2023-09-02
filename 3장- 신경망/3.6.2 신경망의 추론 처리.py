@@ -3,13 +3,16 @@ sys.path.append(os.pardir)
 import numpy as np
 from dataset.mnist import load_mnist
 from PIL import Image
+from 3.6.1 MNIST 데이터셋.py import sigmoid
 
-def img_show(img):
-    pil_img=Image.fromarray(np.int8(img))
-    pil_img.show()
+def get_data():
+    (x_train,t_train),(x_test,t_test)=load_mnist(flatten=True,normalize=False)
+    return x_test,t_test
 
+def init_network():
+    with open("sample_weight.pkl",'rb') as f:
+        network=pickle.load(f)
 
-(x_train,t_train),(x_test,t_test)=load_mnist(flatten=True,normalize=False)
 
 img=x_train[0]
 label=t_train[0]
